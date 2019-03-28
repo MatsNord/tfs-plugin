@@ -99,7 +99,9 @@ public class Project {
         if (serverChangesets != null) {
             for (final Changeset serverChangeset : serverChangesets) {
                 final ChangeSet changeSet = convertServerChangeset(serverChangeset, userLookup);
-                result.add(changeSet);
+                if (!changeSet.getComment().contains("***NO_CI***")) {
+                    result.add(changeSet);
+                }
             }
         }
         return result;
